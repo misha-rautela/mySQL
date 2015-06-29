@@ -42,3 +42,5 @@ ALTER TABLE cust_test1 ADD CONSTRAINT pk_key PRIMARY KEY (test_column);
 //Rename a column
 ALTER TABLE cust_test1  change  test_column pk_col varchar(25);
 
+// change position of column in a table for better readability - can use before/after
+alter table message change msg_id msg_id varchar(25) after rel_id;
