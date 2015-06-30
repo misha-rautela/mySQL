@@ -1,0 +1,48 @@
+select * from cust_info;
+select * from cust_info where gov_id = 'ABC1234';
+
+select * from cust_info where gov_id like 'ABC%'
+
+select distinct cust_id from cust_info;
+
+select count(*) from cust_info;
+
+// order by default is asc
+select cust_id, gov_id from cust_info order by firstname;
+
+// order by desc order
+select cust_id, gov_id from cust_info order by firstname desc;
+
+// Using Limit keyword to restrict number of rows
+select * from cust_info where gov_id like 'ABC%' limit 1,5 ;
+
+// Using regular expression “rlike” in the like clause 
+select * from cust_info where gov_id rlike '^A' limit 1,5 ;
+
+// order by specific fields
+select * from cust_info order by field (gov_id, cust_id)
+
+//order by in a specific sequence of names
+select * from cust_info order by field (firstname, 'NASH', 'EASH', 'JOHN', 'BASH')
+
+
+// Query to list all the foreign keys in a table 
+SELECT * FROM information_schema.TABLE_CONSTRAINTS 
+WHERE information_schema.TABLE_CONSTRAINTS.CONSTRAINT_TYPE = 'FOREIGN KEY' 
+AND information_schema.TABLE_CONSTRAINTS.TABLE_SCHEMA = 'test'
+AND information_schema.TABLE_CONSTRAINTS.TABLE_NAME = 'relations_detail';
+
+// Query to list all the foreign keys in a table 
+SELECT i.TABLE_NAME, i.CONSTRAINT_TYPE, i.CONSTRAINT_NAME, k.REFERENCED_TABLE_NAME, k.REFERENCED_COLUMN_NAME FROM information_schema.TABLE_CONSTRAINTS i LEFT JOIN information_schema.KEY_COLUMN_USAGE k ON i.CONSTRAINT_NAME = k.CONSTRAINT_NAME WHERE i.CONSTRAINT_TYPE = 'FOREIGN KEY' AND i.TABLE_SCHEMA = DATABASE()AND i.TABLE_NAME = 'relations_detail';
+
+
+//JOINS
+// INNER JOIN – cross join
+ select b.cust_id, b.rel_id from cust_info a inner join relations_detail b on a.cust_id = b.cust_id;
+//LEFT OUTER JOIN
+select a.cust_id, b.rel_id from cust_info a left outer join relations_detail b on a.cust_id = b.cust_id;
+// RIGHT OUTER JOIN
+select a.cust_id, b.rel_id from cust_info a righ outer join relations_detail b on a.cust_id = b.cust_id;
+
+
+
