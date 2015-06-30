@@ -45,4 +45,9 @@ select a.cust_id, b.rel_id from cust_info a left outer join relations_detail b o
 select a.cust_id, b.rel_id from cust_info a righ outer join relations_detail b on a.cust_id = b.cust_id;
 
 
+// Union set will show distinct values from both the tables
+select cust_id from cust_info union select cust_id from relations_detail;
+
+//Union all - will display all the elements, will show repeated values. 
+select cust_id from cust_info union all select cust_id from relations_detail;
 
